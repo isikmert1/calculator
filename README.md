@@ -1,2 +1,2 @@
-# calculator
-This is a calculator app I made for the web. HTML/CSS and JS were used in the process to train myself with the fundamentals.
+# Calculator App
+This is a simple calculator app for the web that I built to practice HTML, CSS, and JavaScript. The goal of this project was to strengthen my understanding of web development fundamentals.
