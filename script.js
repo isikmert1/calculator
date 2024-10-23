@@ -1,6 +1,7 @@
 let firstOperand = '';
 let secondOperand = '';
-let currentOperand = null;
+let currentOperation = null;
+let shouldResetScreen = false;
 
 let operationNums = document.querySelectorAll(".btn-number");
 let btnOperation = document.querySelectorAll(".btn-operation");
@@ -8,7 +9,10 @@ let displayHistory = document.querySelector(".display-history");
 let displayResult = document.querySelector(".display-result");
 let clearBtn = document.querySelector(".btn-clear");
 let deleteBtn = document.querySelector(".btn-delete");
+let equalBtn = document.getElementById("equalBtn");
 
+clearBtn.addEventListener("click", () => {clearScreen()});
+equalBtn.addEventListener("click", () => {evaluate()});
 
 operationNums.forEach(button => {
     button.addEventListener("click", () => {
@@ -23,25 +27,43 @@ btnOperation.forEach(button => {
 });
 
 function appendNumber(num) {
-    if (displayResult.textContent === "0") {
+    if (displayResult.textContent === "0" || shouldResetScreen) {
         resetScreen();
     }
     displayResult.textContent += num;
-}
+};
 
 function setOperation(operator) {
     firstOperand = displayResult.textContent;
-    currentOperand = operator;
-    displayHistory.textContent = `${firstOperand} ${currentOperand}`
-}
+    currentOperation = operator;
+    displayHistory.textContent = `${firstOperand} ${currentOperation}`;
+    shouldResetScreen = true;
+};
 
 function resetScreen() {
-    displayResult.textContent="";
-}
+    displayResult.textContent= "";
+    shouldResetScreen = false;
+};
+
+function clearScreen() {
+    displayHistory.textContent = "";
+    displayResult.textContent = "0";
+    firstOperand = '';
+    secondOperand = '';
+    currentOperation = null;
+};
 
 function evaluate () {
-
-}
+    if (currentOperation === null || shouldResetScreen) return;
+    if (currentOperation === '÷' && displayResult.textContent === '0') {
+        alert("You can't divide by 0!")
+        return
+    }
+    secondOperand = displayResult.textContent;
+    displayHistory.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
+    displayResult.textContent = operate(currentOperation, firstOperand, secondOperand);
+    currentOperation = null;
+};
 
 function operate(operator, a, b) {
     a = Number(a);
@@ -59,4 +81,4 @@ function operate(operator, a, b) {
         default:
             return null;
     }
-}
+};
