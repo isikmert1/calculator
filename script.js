@@ -13,6 +13,7 @@ let equalBtn = document.getElementById("equalBtn");
 
 clearBtn.addEventListener("click", () => {clearScreen()});
 equalBtn.addEventListener("click", () => {evaluate()});
+deleteBtn.addEventListener("click", () => {deleteNumber()});
 
 operationNums.forEach(button => {
     button.addEventListener("click", () => {
@@ -31,6 +32,10 @@ function appendNumber(num) {
         resetScreen();
     }
     displayResult.textContent += num;
+};
+
+function deleteNumber() {
+    displayResult.textContent = displayResult.textContent.toString().slice(0,-1);
 };
 
 function setOperation(operator) {
@@ -61,7 +66,7 @@ function evaluate () {
     }
     secondOperand = displayResult.textContent;
     displayHistory.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`;
-    displayResult.textContent = operate(currentOperation, firstOperand, secondOperand);
+    displayResult.textContent = Math.round(operate(currentOperation, firstOperand, secondOperand) * 1000) / 1000;
     currentOperation = null;
 };
 

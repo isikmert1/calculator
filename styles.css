@@ -113,17 +113,20 @@ body {
     border-radius: 0.3em;
     width: 100%;
     padding: 1em;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .display-history {
     text-align: right;
     font-size: 1.2em;
-    letter-spacing: -0.04em;
+    min-height: 2rem;
 }
 
 .display-result {
     text-align: right;
     font-size: 2.5em;
+    min-height: 4rem;
 }
 
 .action-buttons {
