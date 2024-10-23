@@ -41,6 +41,7 @@ function deleteNumber() {
 };
 
 function setOperation(operator) {
+    if (currentOperation !== null) evaluate()
     firstOperand = displayResult.textContent;
     currentOperation = operator;
     displayHistory.textContent = `${firstOperand} ${currentOperation}`;
