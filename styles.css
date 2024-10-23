@@ -231,10 +231,29 @@ body {
         font-size: 1em;
     }
 
+    .number-buttons {
+        margin-inline: auto;
+    }
+
     .footer {
         font-size: 1em;
     }
+}
 
+@media screen and (max-height: 44em) {
+    body {
+        display: inline;
+        padding: .2rem;
+    }
+
+    .main {
+        width: 95%;
+        margin-inline: auto;
+    }
+
+    .action-buttons button{
+        padding: 1rem 0.5rem;
+    }
 }
 
 

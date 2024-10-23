@@ -10,10 +10,12 @@ let displayResult = document.querySelector(".display-result");
 let clearBtn = document.querySelector(".btn-clear");
 let deleteBtn = document.querySelector(".btn-delete");
 let equalBtn = document.getElementById("equalBtn");
+let pointBtn = document.getElementById("pointBtn");
 
 clearBtn.addEventListener("click", () => {clearScreen()});
 equalBtn.addEventListener("click", () => {evaluate()});
 deleteBtn.addEventListener("click", () => {deleteNumber()});
+pointBtn.addEventListener("click", () => {addDecimal()})
 
 operationNums.forEach(button => {
     button.addEventListener("click", () => {
@@ -58,10 +60,18 @@ function clearScreen() {
     currentOperation = null;
 };
 
+function addDecimal() {
+    if (shouldResetScreen) resetScreen();
+    if (displayResult.textContent === '')
+        displayResult.textContent = '0';
+    if (displayResult.textContent.includes('.')) return;
+    displayResult.textContent += '.';
+};
+
 function evaluate () {
     if (currentOperation === null || shouldResetScreen) return;
     if (currentOperation === '÷' && displayResult.textContent === '0') {
-        alert("You can't divide by 0!")
+        alert("Undefined");
         return
     }
     secondOperand = displayResult.textContent;
